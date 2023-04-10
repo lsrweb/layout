@@ -1,16 +1,17 @@
-import { ref } from "vue"
-
-export function useLogin() {
-  const token = ref(localStorage.getItem("token"))
+import { computed, ref } from "vue";
+import store from "@/main"
+export const useLogin = () => {
+  const token = store.state.token
 
   const isLogin = () => {
-    if (token.value) return true
-    else return false
+   return store.state.token
   }
-  const refReshToken = () => {
-    token.value = localStorage.getItem("token")
+  const refReshToken = (val = "") => {
+    store.commit("SET_TOKEN", val)
   }
 
+
+  store.commit('SET_TOKEN',localStorage.getItem("token"))
 
   return {
     token,
@@ -18,3 +19,4 @@ export function useLogin() {
     refReshToken
   }
 }
+

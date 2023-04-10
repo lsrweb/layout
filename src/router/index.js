@@ -39,11 +39,7 @@ const whiteList = ['/login', "/index"]
 router.beforeEach((to, from, next) => {
   if (to.path === '/login') {
     const token = localStorage.getItem("token")
-    if (token) {
-      next('/index')
-    } else {
-      next()
-    }
+    !token ? next() : next('/index')
   } else {
     const token = localStorage.getItem("token")
     if (token) {
@@ -52,7 +48,10 @@ router.beforeEach((to, from, next) => {
       if (whiteList.indexOf(to.path) !== -1) {
         next()
       } else {
-        next('/login')
+        next({
+          path: '/login',
+          query: to.query
+        })
       }
     }
   }

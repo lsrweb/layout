@@ -5,33 +5,30 @@
 </template>
 
 
-// <script>
-// export default {
-//   setup() {
-//     const toLogin = () => {
-
-//     }
-//     return {
-//       toLogin
-//     }
-//   }
-// }
-//
-</script>
-
-
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRouter } from "vue-router";
+import { useLogin } from "@/layout/components/loginutils";
+import { ElNotification } from "element-plus";
 
-const router = useRouter()
+const router = useRouter();
+const { refReshToken } = useLogin();
+
 const toLogin = () => {
-  localStorage.setItem('token', '!@$%#$^%UTRHFDBVSFAHDFBVSADGV')
+  const tokenValue = "asdasdasdassd";
+  localStorage.setItem("token", tokenValue);
   router.push({
-    path: '/index'
-  })
-}
+    path: router.currentRoute.value.query.path ? router.currentRoute.value.query.path : "/index",
+    query: router.currentRoute.value.query.data ? JSON.parse(router.currentRoute.value.query.data) : {}
+  }).then(() => {
+    refReshToken(tokenValue);
+  });
+  ElNotification({
+    title: "登录成功",
+    message: "登录成功",
+    type: "success"
+  });
+};
 
 
-
-// 
+//
 </script>

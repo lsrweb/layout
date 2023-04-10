@@ -15,10 +15,10 @@
 
 <script setup>
 import indexItem from '@/components/indexItem.vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from "vue-router";
 
 const router = useRouter()
-
+const route = useRoute()
 const data = [
   {
     image: 'http://qiniu.picgo.srliforever.ltd/img/picacomic_2.png',
@@ -60,9 +60,14 @@ const data = [
 ]
 
 const toUrl = (item) => {
+  const data = {}
+  if(!localStorage.getItem('token')) {
+    data['path'] = '/detail'
+  }
+  data['data'] = JSON.stringify(item)
   router.push({
     path: '/detail',
-    query: item
+    query: data
   })
 }
 </script>
