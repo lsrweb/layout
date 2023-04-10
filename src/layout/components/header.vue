@@ -60,6 +60,11 @@ const handleSelect = (path) => {
         path: "/login"
       });
     }
+  } else {
+    // 其他情况
+    router.push({
+      path: path
+    });
   }
 };
 </script>
