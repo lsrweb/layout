@@ -1,0 +1,27 @@
+.bg-white {
+  background-color: #fff;
+}
+
+.header_shadown {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.sec_body {
+  min-height: 100vh;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body,
+html {
+  background-color: #f7f8fa;
+}
+.container {
+  width: 100%;
+  padding: 0 10%;
+  height: auto;
+  margin: 0 auto;
+}
