@@ -78,7 +78,7 @@
 import { Picture as IconPicture } from "@element-plus/icons-vue";
 
 import { useRoute } from "vue-router";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { ElNotification } from "element-plus";
 
 const route = useRoute();
@@ -94,12 +94,17 @@ const loading = ref(false);
 const userAddress = ref([]);
 const toAddress = () => {
 };
-
+// watch count,refresh localstorage count
+watch(nowRouteData.value.count, val => {
+  const cardData = JSON.parse(localStorage.getItem("cardData")) || [];
+  const index = cardData.findIndex(item => item.id === nowRouteData.value.id);
+  cardData[index].count = val;
+  localStorage.setItem("cardData", JSON.stringify(cardData));
+});
 // 理论而言,添加到购物车中的商品不能重复,如果重复,只对数量进行加1操作
 const toCardData = async () => {
   loading.value = true;
 
-  // 模拟网络延迟,最低1s,最高4s
   await sleep(Math.random() * 3000 + 1000);
 
   // 如果count +1后大于10,或者 count 当前已经是10,则不允许再进行加1操作
