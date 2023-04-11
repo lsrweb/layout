@@ -21,7 +21,7 @@ const router = useRouter()
 const route = useRoute()
 const data = [
   {
-    image: 'http://qiniu.picgo.srliforever.ltd/img/picacomic_2.png',
+    image: 'http://qiniu.picgo.srliforever.ltd/ac_fun_2.png',
     price: 100,
     sale: 2,
     title: '这是一个蛋糕1',

@@ -50,7 +50,7 @@ router.beforeEach((to, from, next) => {
       } else {
         next({
           path: '/login',
-          query: to.query
+          query: to.query || {}
         })
       }
     }

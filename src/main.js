@@ -7,7 +7,8 @@ import router from "./router";
 const store = createStore({
   state() {
     return {
-      token: localStorage.getItem("token")
+      token: localStorage.getItem("token"),
+      car: []
     };
   },
   mutations: {
